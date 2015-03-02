@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+ 
+ AUTHOR: zc  
+ HOST: zc@zcdeMacBook-Pro.local
+ PATH: /Users/zc/workspace/duang.guru/app/config.py
+ DATE: 2015-03-02 19:35:21  
+ 
+   
+ INTRODUCTION:
+    <<introduction write on here>>
+     
+ CHANGLOG:
+    # FORMAT: DATE TIME AUTHOR COMMENT
+    # etc. 2015-03-02 19:35:21 zc  # comment on here.
+    
+    <<changelog write on here>> 
+    
+  
+'''
+
+import os
+
+# mongodb settings
+mongo = {
+    "host":"127.0.0.1",
+    "port":27017,
+    "dbn":"duang_guru",
+    "user":"",
+    "passwd":"",
+    "max_pool_size":300
+}
+
+# redis settings
+redisconf = {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "dbn": 0,
+    "redis_max_connections":128
+}
+
+#
+DEBUG = os.environ.get( 'DDEBUG', False )
+DEBUG=True
+
+if DEBUG:
+    ip_expires = 1
+else:
+    ip_expires = 1
+
