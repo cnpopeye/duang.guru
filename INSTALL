@@ -7,7 +7,7 @@ $ sudo  aptitude install mongodb-server
 
 # nginx
 $ sudo aptitude install nginx
-$ sudo ln -s /data/duang.guru/api.duang.guru /etc/nginx/sites-enabled/api.duang.guru
+$ sudo ln -s /data/duang.guru/conf/api.duang.guru /etc/nginx/sites-enabled/api.duang.guru
 
 # git
 $ sudo aptitude install git
@@ -17,7 +17,7 @@ $ sudo aptitude install redis-server
 
 # supervisor
 $ sudo aptitude install  supervisor
-$ sudo ln -s /data/duang.guru/supervisor_duang.conf /etc/supervisor/conf.d/supervisor_duang.conf
+$ sudo ln -s /data/duang.guru/conf/supervisor_duang.conf /etc/supervisor/conf.d/supervisor_duang.conf
 
 # gevent require
 $ sudo aptitude install python-dev libevent-dev
