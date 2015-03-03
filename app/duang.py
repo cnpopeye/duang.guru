@@ -81,6 +81,9 @@ class BaseHandler(tornado.web.RequestHandler ):
 
 
 class DuangHandler(BaseHandler):
+    def get(self):
+        self.write("duang.guru is work!")
+        
     def post(self):
         try:
             arguments = eval(self.request.body)
