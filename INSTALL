@@ -22,6 +22,8 @@ $ sudo ln -s /data/duang.guru/supervisor_duang.conf /etc/supervisor/conf.d/super
 # gevent require
 $ sudo aptitude install python-dev libevent-dev
 
+# python-dev libs
+$ sudo apt-get install python-dev
 
 # virtualenv
 $ sudo aptitude install python-virtualenv virtualenvwrapper

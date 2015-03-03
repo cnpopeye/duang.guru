@@ -1,0 +1,21 @@
+upstream duang{
+        #server 127.0.0.1:8901;
+        server 127.0.0.1:8902;
+        #server 127.0.0.1:8903;
+        #server 127.0.0.1:8904
+}
+
+server {
+        listen   80; ## listen for ipv4; this line is default and implied
+        #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+        server_name api.duang.guru;
+
+        location / {
+                proxy_pass
+                http://duang;
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_pass_header Set-Cookie;
+        }
+
+}
