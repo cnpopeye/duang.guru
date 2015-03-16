@@ -91,10 +91,17 @@ tr td.verify-wrap {
     margin-top: 10px;
 }
 
-/*.show-detail-btn[aria-expanded="false"] i {
-    background: url(../images/arrow-up.png) no-repeat center;
+.verify-wrap button {
+    width: 80px;
 }
-.show-detail-btn[aria-expanded="true"] i {
-    background: url(../images/arrow-down.png) no-repeat center;
+
+/* Channel List */
+.channel-list table tr th,
+.channel-list table tr td {
+    vertical-align: middle;
+    text-align: center;
 }
-*/
+.op-wrap button {
+    width: 60px;
+}
+

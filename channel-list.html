@@ -48,12 +48,7 @@
     <div class="container">
 
       <div class="row main channel-list">
-            <div class="head">
-                <div class="ops pull-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPanel">Add Record</button>
-                </div>
-                <h3>Channel List</h3>
-            </div>
+          <h3>Channel List</h3>
 
           <table class="table table-striped mt20">
             <tr>
@@ -63,7 +58,6 @@
               <th>duang</th>
               <th>verify</th>
               <th>created_at</th>
-              <th>operation</th>
             </tr>
             <tr>
                 <td>ad</td>
@@ -72,9 +66,6 @@
                 <td>11</td>
                 <td>10</td>
                 <td>2015-03-01</td>
-                <td class="op-wrap">
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPanel">Edit</button>
-                </td>
             </tr>
             <tr>
                 <td>ad</td>
@@ -83,68 +74,13 @@
                 <td>11</td>
                 <td>10</td>
                 <td>2015-03-01</td>
-                <td class="op-wrap">
-                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPanel">Edit</button>
-                </td>
             </tr>
           </table>
       </div>
 
     </div><!-- /.container -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="addPanel" tabindex="-1" role="dialog" aria-labelledby="addPanelLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addPanelLabel">New Record / Edit</h4>
-      </div>
-      <div class="modal-body">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label for="sitename" class="col-sm-2 control-label">name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="sitename" placeholder="demoname">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="website" class="col-sm-2 control-label">website</label>
-                    <div class="col-sm-10">
-                      <input type="url" class="form-control" id="website" placeholder="http://">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">email</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="email" placeholder="abc@demo.com">
-                    </div>
-                </div>               
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
   
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <script>
-        $('#addPanel').on('shown.bs.modal', function () {
-            alert('打开了弹窗');
-        });
-
-        $('#addPanel').on('hidden.bs.modal', function (e) {
-            alert('关闭了弹窗');
-        })
-
-    </script>
   </body>
 </html>
