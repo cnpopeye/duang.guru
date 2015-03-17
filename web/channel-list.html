@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendors/dialog/ui-dialog.css">
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -65,7 +66,7 @@
               <th>created_at</th>
               <th>operation</th>
             </tr>
-            <tr>
+            <tr data-id="1">
                 <td>ad</td>
                 <td>www.ss.com</td>
                 <td>adf@ss.com</td>
@@ -74,9 +75,10 @@
                 <td>2015-03-01</td>
                 <td class="op-wrap">
                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPanel">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                 </td>
             </tr>
-            <tr>
+            <tr data-id="2">
                 <td>ad</td>
                 <td>www.ss.com</td>
                 <td>adf@ss.com</td>
@@ -85,6 +87,7 @@
                 <td>2015-03-01</td>
                 <td class="op-wrap">
                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPanel">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                 </td>
             </tr>
           </table>
@@ -135,15 +138,45 @@
   
     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="vendors/dialog/dialog.js"></script>
 
     <script>
         $('#addPanel').on('shown.bs.modal', function () {
-            alert('打开了弹窗');
+            // alert('打开了弹窗');
         });
 
         $('#addPanel').on('hidden.bs.modal', function (e) {
-            alert('关闭了弹窗');
+            // alert('关闭了弹窗');
         })
+
+        $('.delete-btn').on('click', function() {
+
+            handlerDelete();
+        });
+
+        function handlerDelete() {
+            dialog({
+                content: 'Delete this record ?',
+                okValue: 'Ok',
+                cancelValue: 'Cancel',
+                ok: function () {
+                    popMsg('You have deleted it.');
+                },
+                cancel: function () {
+                    console.log('Cancel');
+                }
+            }).show();
+        }
+
+        function popMsg(content) {
+            var d = dialog({
+                content: content
+            });
+            d.show();
+            setTimeout(function () {
+                d.close().remove();
+            }, 1200);
+        }
 
     </script>
   </body>

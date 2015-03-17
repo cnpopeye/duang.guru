@@ -103,5 +103,6 @@ tr td.verify-wrap {
 }
 .op-wrap button {
     width: 60px;
+    margin: 1px;
 }
 
