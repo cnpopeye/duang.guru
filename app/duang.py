@@ -90,16 +90,17 @@ class DuangHandler(BaseHandler):
             text = arguments["text"]
             url = arguments["url"]
             title = arguments["title"]
+            comment = arguments["comment"]
         except Exception,e:
             print "add duang error(DuangHandler.post):",e
             raise tornado.web.HTTPError(405)
         else:
-            if not self.add_duang(title, url, text):
+            if not self.add_duang(title, url, text, comment):
                 raise tornado.web.HTTPError(406)
             self.finish()
 
-    def add_duang(self, title, url, text):
-        _duang=dict(title=title, url=url, text=text)
+    def add_duang(self, title, url, text, comment):
+        _duang=dict(title=title, url=url, text=text, comment=comment)
         #获取UA信息
         _duang["user_agent"] = self.request.headers["User-Agent"]
         #获取IP地址
