@@ -30,7 +30,8 @@ post数据时，错别字使用`>>><<<`标注。
    {
      "title":"网页标题",
      "url":"http:/sdfa.com/asdf/asdf.html",
-     "text":"错别字>>>别字<<<文字"
+     "text":"错别字>>>别字<<<文字",
+     "comment":"正确的字和理由"
    }
 ```
 
