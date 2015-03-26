@@ -27,10 +27,12 @@ import httplib
 import urllib
 
 host = 'localhost:8999'
+#host = 'api.duang.guru'
 post_data = '''{
     "title":"标题",
     "url":"http://sdfa.com/asdf/asdf.html",
-    "text":"错别字>>>别字<<<文字"
+    "text":"错别字>>>别字<<<文字",
+    "comment":"这里是注解"
 }'''
 
 class TestCase(unittest.TestCase):

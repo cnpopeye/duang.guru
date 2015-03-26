@@ -87,12 +87,13 @@ class DuangHandler(BaseHandler):
     def post(self):
         try:
             arguments = eval(self.request.body)
+            print type(arguments)
             text = arguments["text"]
             url = arguments["url"]
             title = arguments["title"]
             comment = arguments["comment"]
         except Exception,e:
-            print "add duang error(DuangHandler.post):",e
+            print "***add duang error(in DuangHandler.post())***:",e
             raise tornado.web.HTTPError(405)
         else:
             if not self.add_duang(title, url, text, comment):

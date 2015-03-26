@@ -3,6 +3,7 @@
 *[~#]*
 *.sql
 *.rdb
+*.monopic
 
 # C extensions
 *.so
