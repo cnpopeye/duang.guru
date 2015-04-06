@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Duang</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href={{static_url("css/style.css")}} rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>
+    function verify(id,verifyed){
+        var requestdata={};
+        requestdata['_id'] = id;
+        requestdata['verify'] = verifyed;
+        $.ajax({ url: "/index",data: requestdata, success: function(){
+            window.location.reload();
+        }});
+    }
+
+    </script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Memu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Duang</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index">Duang List</a></li>
+            <li><a href="channel-list">Chanel List</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav> <!-- 导航结束 -->
+
+    <div class="container">
+
+        <div class="row main home">
+              <h3>Duang List</h3>
+              <ul class="duang-list">
+                    {%for item in items%}
+                    {%if item.get('verify') == None%}
+                    <li class="duang-item">
+                        <table class="table preview table-bordered">
+                            <tr>
+                                <td>Title</td>
+                                <td>{{item['title']}}</td>
+                                <td rowspan="2" class="verify-wrap">
+                                    <button class="btn btn-primary btn-sm" onclick=verify("{{item['_id']}}",true) >Verify</button>
+                                    <button class="btn btn-danger btn-sm mt10" onclick=verify("{{item['_id']}}",false) >Reject</button>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Text</td>
+                                <td>{{item['text']}}</td>
+                            </tr>
+                        </table>
+
+                        <button class="btn btn-primary show-detail-btn" type="button" data-toggle="collapse" data-target="#detailPanel-{{item['_id']}}" aria-expanded="false" aria-controls="detailPanel-{{item['_id']}}">
+                          Detail <i class="glyphicon glyphicon-menu-right"></i>
+                        </button>
+
+                        <div class="collapse" id="detailPanel-{{item['_id']}}">
+                            <table class="table preview table-bordered">
+                                <tr>
+                                    <td>comment</td>
+                                    <td>{{item['comment']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>host_name</td>
+                                    <td>{{item['host_name']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>{{item['url']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>created_at</td>
+                                    <td>{{item['created_at'].strftime("%Y-%m-%d %H:%M:%S")}}</td>
+                                </tr>
+                                {% if item.get('verify_at') != None %}
+                                <tr>
+                                    <td>verify_at</td>
+                                    <td>{{item['verify_at'].strftime("%Y-%m-%d %H:%M:%S")}}</td>
+                                </tr>
+                                {% end if %}
+                                {% if item.get('verify') != None%}
+                                <tr>
+                                    <td>verify</td>
+                                    <td>{{item['verify']}}</td>
+                                </tr>
+                                {% end if %}
+                                <tr>
+                                    <td>ip_address</td>
+                                    <td>{{item['ip']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>user-agent</td>
+                                    <td>{{item['user_agent']}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    {% end %}
+                    {% end %}
+                    
+              </ul>
+        </div>
+
+    </div><!-- /.container -->
+  
+    
+  </body>
+</html>
