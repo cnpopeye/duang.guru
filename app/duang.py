@@ -92,7 +92,6 @@ class DuangHandler(BaseHandler):
     def post(self):
         try:
             arguments = eval(self.request.body)
-            print type(arguments)
             text = arguments["text"]
             url = arguments["url"]
             title = arguments["title"]
@@ -115,6 +114,7 @@ class DuangHandler(BaseHandler):
         _duang["host_name"] = get_host(url)
         #设置created_at
         _duang["created_at"] = datetime.datetime.utcnow()
+        _duang["sent_at"] = -1
         #存储数据
         return self.mongo.duang.save(_duang, w=1)
     

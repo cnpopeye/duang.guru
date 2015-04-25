@@ -41,3 +41,4 @@ nosetests.xml
 
 #special file
 config.py
+cronjob/conf.py
