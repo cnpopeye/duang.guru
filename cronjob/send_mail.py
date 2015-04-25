@@ -69,9 +69,28 @@ def get_duang():
 def get_channel(host_name):
     return mongo.source.find_one({"website":host_name})
 
+def set_channel(host_name):
+    new_source = dict(
+        name=host_name,
+        website=host_name,
+        support_email=host_name,
+        created_at=datetime.datetime.utcnow(),
+        duang=0,
+        verify=0,
+        response=0)
+    mongo.source.save(new_source)
+
 def get_source_email(host_name):
+    mailto = []
     source = get_channel(host_name)
-    return source["support_email"]
+    if source is None:
+        #添加渠道信息
+        set_channel()
+    else:
+        support_email = source.get("support_email",None)
+    if mailto is not None:
+        mailto = [support_email]
+    return mailto
     
 def set_sent_status(duang_id):
     mongo.duang.update({"_id":duang_id}, {"$set":{"sent_at":datetime.datetime.utcnow()}})
@@ -80,7 +99,9 @@ def send():
     duangs = get_duang()
     jobs = []
     for duang in duangs:
-        mailto_list = [get_source_email(duang["host_name"])]
+        mailto_list = get_source_email(duang["host_name"])
+        if mailto_list:
+            continue 
         title = duang["title"].encode('utf-8')
         url = duang["url"].encode('utf-8')
         text = duang["text"].encode('utf-8')
