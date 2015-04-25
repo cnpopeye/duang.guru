@@ -90,7 +90,7 @@
                             <table class="table preview table-bordered">
                                 <tr>
                                     <td>comment</td>
-                                    <td>{{item['comment']}}</td>
+                                    <td>{{item.get('comment',"")}}</td>
                                 </tr>
                                 <tr>
                                     <td>host_name</td>
@@ -104,7 +104,7 @@
                                     <td>created_at</td>
                                     <td>{{item['created_at'].strftime("%Y-%m-%d %H:%M:%S")}}</td>
                                 </tr>
-                                {% if item.get('verify_at') != None %}
+                                {% if item.get('verify_at',None) != None %}
                                 <tr>
                                     <td>verify_at</td>
                                     <td>{{item['verify_at'].strftime("%Y-%m-%d %H:%M:%S")}}</td>
@@ -113,7 +113,7 @@
                                 {% if item.get('verify') != None%}
                                 <tr>
                                     <td>verify</td>
-                                    <td>{{item['verify']}}</td>
+                                    <td>{{item.get('verify',0)}}</td>
                                 </tr>
                                 {% end if %}
                                 <tr>
