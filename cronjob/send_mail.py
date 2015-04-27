@@ -96,8 +96,8 @@ def set_sent_status(duang_id):
     mongo.duang.update({"_id":duang_id}, {"$set":{"sent_at":datetime.datetime.utcnow()}})
 
 def send():
+    os.environ["DUANG_SENDING"]="Y"
     duangs = get_duang()
-    jobs = []
     for duang in duangs:
         mailto_list = get_source_email(duang["host_name"])
         if mailto_list:
@@ -111,12 +111,13 @@ def send():
             set_sent_status(str(duang["_id"]))
             print "just sent one:",str(duang["_id"]),"let me yo-yo."
             time.sleep(15)
+    os.environ["DUANG_SENDING"]="N"
 
 
 if __name__ == '__main__':
-    is_first = False
-    while True:
-        if not is_first: 
-            print "focus on work, hard work!"
-            is_first = False
+    if os.environ.get('DUANG_SENDING', "N" )=="Y":
+        print "focus on work, hard work!"
         send()
+    else:
+        print "Not Found Duang, let me yo-yo ^_^!"
+
