@@ -32,7 +32,7 @@ duang.guru的宗旨是提高信息质量，传递正确的给用户。
 http://duang.guru
 '''
 
-def send_mail(mailto_list, sub,content):
+def send_mail(mailto_list, sub, content):
     msg = MIMEText(content)
     msg['Subject'] = sub
     msg['From'] = mail_user
@@ -100,7 +100,8 @@ def send():
     duangs = get_duang()
     for duang in duangs:
         mailto_list = get_source_email(duang["host_name"])
-        if mailto_list:
+        if not mailto_list:
+            print "to be continue."
             continue 
         title = duang["title"].encode('utf-8')
         url = duang["url"].encode('utf-8')
@@ -108,14 +109,14 @@ def send():
         subject = subject_template % title
         content = content_template % (title, url, text)
         if send_mail(mailto_list, subject, content):
-            set_sent_status(str(duang["_id"]))
+            set_sent_status(duang["_id"])
             print "just sent one:",str(duang["_id"]),"let me yo-yo."
             time.sleep(15)
     os.environ["DUANG_SENDING"]="N"
 
 
 if __name__ == '__main__':
-    if os.environ.get('DUANG_SENDING', "N" )=="Y":
+    if os.environ.get('DUANG_SENDING', "N" )=="N":
         print "focus on work, hard work!"
         send()
     else:
